@@ -1,6 +1,6 @@
 class Contact
   @@contacts = []
-  attr_reader(:first, :last, :phones, :emails)
+  attr_reader(:first, :last, :phones, :emails, :addresses)
 
   define_method(:initialize) do |attributes|
     @first = attributes.fetch(:first)
@@ -28,5 +28,9 @@ class Contact
 
   define_method(:add_email) do |email|
     @emails.push(email)
+  end
+
+  define_method(:add_address) do |address|
+    @addresses.push(address)
   end
 end
