@@ -1,29 +1,37 @@
 <h1>Here is the information for <%= @contact.first() %></h1>
-
+<h3>Phone</h3>
 <ul>
   <% @contact.phones().each() do |phone| %>
-    <li><%= phone.phone() %> <%= phone.area() %> <%= phone.type %></a></li>
+    <% if phone.area().!=("") && phone.phone.!=("") && phone.type.!=("") %>
+        <li>(<%= phone.area() %>) <%= phone.phone() %> Type: <%= phone.type %></a></li>
+    <% end %>
   <% end %>
 </ul>
 
+<h3>Email</h3>
 <ul>
   <% @contact.emails().each() do |email| %>
-    <li><%= email.address() %> <%= email.type() %></a></li>
+    <% if email.address().!=("") && email.type.!=("") %>
+    <li><%= email.address() %> Type: <%= email.type() %></a></li>
+    <% end %>
   <% end %>
 </ul>
 
+<h3>Address</h3>
 <ul>
   <% @contact.addresses().each() do |address| %>
-    <li><%= address.address() %> <%= address.city() %> <%= address.state() %> <%= address.zip() %> <%= address.type() %></a></li>
+  <% if address.address().!=("") && address.city.!=("") && address.state().!=("") && address.zip.!=("") && address.type.!=("") %>
+      <li><%= address.address() %> <%= address.city() %> <%= address.state() %> <%= address.zip() %> <%= address.type() %></a></li>
+    <% end %>
   <% end %>
 </ul>
 
-
+<p></p>
 
 <form action="/information" method="post">
   <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
 
-  <h4>Phone info</h4>
+  <h5>Phone info</h5>
 
   <label for='phone_number'>Phone Number:</label>
   <input id='phone_number' name='phone_number' type='text'>
@@ -34,7 +42,7 @@
   <label for='phone_type'>Phone Number Type:</label>
   <input id='phone_type' name='phone_type' type='text'>
 
-  <h4>Email info</h4>
+  <h5>Email info</h5>
 
   <label for='email_address'>Email Address:</label>
   <input id='email_address' name='email_address' type='text'>
@@ -42,7 +50,7 @@
   <label for='email_type'>Email Type:</label>
   <input id='email_type' name='email_type' type='text'>
 
-  <h4>Address info</h4>
+  <h5>Address info</h5>
 
   <label for='address_number'>Address:</label>
   <input id='address_number' name='address_number' type='text'>
@@ -60,6 +68,7 @@
   <input id='address_type' name='address_type' type='text'>
 
 
+  <p></p>
   <button type="submit">Add Information</button>
 </form>
 
