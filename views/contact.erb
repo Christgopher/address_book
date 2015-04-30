@@ -1,4 +1,67 @@
-<h3>Here is the information for this contact:</h3>
+<h1>Here is the information for <%= @contact.first() %></h1>
+
+<ul>
+  <% @contact.phones().each() do |phone| %>
+    <li><%= phone.phone() %> <%= phone.area() %> <%= phone.type %></a></li>
+  <% end %>
+</ul>
+
+<ul>
+  <% @contact.emails().each() do |email| %>
+    <li><%= email.address() %> <%= email.type() %></a></li>
+  <% end %>
+</ul>
+
+<ul>
+  <% @contact.addresses().each() do |address| %>
+    <li><%= address.address() %> <%= address.city() %> <%= address.state() %> <%= address.zip() %> <%= address.type() %></a></li>
+  <% end %>
+</ul>
+
+
+
+<form action="/information" method="post">
+  <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
+
+  <h4>Phone info</h4>
+
+  <label for='phone_number'>Phone Number:</label>
+  <input id='phone_number' name='phone_number' type='text'>
+
+  <label for='area_code'>Area Code:</label>
+  <input id='area_code' name='area_code' type='text'>
+
+  <label for='phone_type'>Phone Number Type:</label>
+  <input id='phone_type' name='phone_type' type='text'>
+
+  <h4>Email info</h4>
+
+  <label for='email_address'>Email Address:</label>
+  <input id='email_address' name='email_address' type='text'>
+
+  <label for='email_type'>Email Type:</label>
+  <input id='email_type' name='email_type' type='text'>
+
+  <h4>Address info</h4>
+
+  <label for='address_number'>Address:</label>
+  <input id='address_number' name='address_number' type='text'>
+
+  <label for='city'>City:</label>
+  <input id='city' name='city' type='text'>
+
+  <label for='state'>State:</label>
+  <input id='state' name='state' type='text'>
+
+  <label for='zip_code'>Zip Code:</label>
+  <input id='zip_code' name='zip_code' type='text'>
+
+  <label for='address_type'>Address Type:</label>
+  <input id='address_type' name='address_type' type='text'>
+
+
+  <button type="submit">Add Information</button>
+</form>
 
 
 
