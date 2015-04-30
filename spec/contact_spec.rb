@@ -1,5 +1,7 @@
 require('rspec')
 require('contact')
+require('phone')
+require('email')
 
 describe(Contact) do
   before() do
@@ -36,6 +38,22 @@ describe(Contact) do
       test_contact.save()
       Contact.clear()
       expect(Contact.all()).to(eq([]))
+    end
+  end
+  describe("#add_phone") do
+    it("adds the phone number to the contact") do
+      test_phone = Phone.new({:phone => 1234567, :area => 890, :type => "home"})
+      test_contact = Contact.new({:first => "Chris", :last => "Le Compte"})
+      test_contact.add_phone(test_phone)
+      expect(test_contact.phones()).to(eq([test_phone]))
+    end
+  end
+  describe("#add_email") do
+    it("adds the email to the contact") do
+      test_email = Email.new({:address => "bob@bob.com", :type => "Personal"})
+      test_contact = Contact.new({:first => "Chris", :last => "Le Compte"})
+      test_contact.add_email(test_email)
+      expect(test_contact.emails()).to(eq([test_email]))
     end
   end
 end
