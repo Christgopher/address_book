@@ -1,0 +1,8 @@
+<h1>Contact List</h1>
+<ul>
+  <% @contacts.each() do |contact| %>
+    <li><a href="/contacts/<%= contact.id() %>"><%= contact.last() %> , <%= contact.first() %></a></li>
+    <% end %>
+</ul>
+
+<p><a href="/">Return to Address Book</a></p> 

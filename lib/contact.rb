@@ -1,6 +1,6 @@
 class Contact
   @@contacts = []
-  attr_reader(:first, :last, :phones, :emails, :addresses)
+  attr_reader(:first, :last, :phones, :emails, :addresses, :id)
 
   define_method(:initialize) do |attributes|
     @first = attributes.fetch(:first)
@@ -8,6 +8,7 @@ class Contact
     @phones = []
     @emails = []
     @addresses = []
+    @id = @@contacts.length().+(1)
   end
 
   define_singleton_method(:all) do
@@ -32,5 +33,15 @@ class Contact
 
   define_method(:add_address) do |address|
     @addresses.push(address)
+  end
+
+  define_singleton_method(:find) do |id|
+    found_contact = nil
+    @@contacts.each() do |contact|
+      if contact.id().eql?(id)
+        found_contact = contact
+      end
+    end
+    found_contact
   end
 end
